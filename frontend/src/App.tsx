@@ -456,6 +456,18 @@ export default function App() {
               <X size={20} />
             </button>
           </div>
+          
+          {/* Mobile-only view mode selector */}
+          <div className="sidebar-view-modes">
+            <button className={`sidebar-view-btn ${viewMode === 'active' ? 'active' : ''}`} onClick={() => { setViewMode('active'); setSidebarOpen(false); }}>
+              <BookOpen size={16} style={{ marginRight: 8 }} />
+              Active Notes
+            </button>
+            <button className={`sidebar-view-btn ${viewMode === 'archived' ? 'active' : ''}`} onClick={() => { setViewMode('archived'); setSidebarOpen(false); }}>
+              <Archive size={16} style={{ marginRight: 8 }} />
+              Archived Notes
+            </button>
+          </div>
 
           <div className="sidebar-title">
             <Tag size={11} style={{ marginRight: 4, verticalAlign: 'middle' }} />

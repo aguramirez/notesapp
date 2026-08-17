@@ -456,6 +456,31 @@ textarea { resize: vertical; min-height: 100px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
+/* Sidebar view mode selector (hidden by default on desktop) */
+.sidebar-view-modes {
+  display: none;
+}
+.sidebar-view-btn {
+  display: flex;
+  align-items: center;
+  padding: .6rem .75rem;
+  border-radius: var(--radius-full);
+  font-size: .9rem;
+  color: var(--text-2);
+  transition: all var(--t);
+  text-align: left;
+  font-weight: 500;
+  width: 100%;
+}
+.sidebar-view-btn:hover {
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+}
+.sidebar-view-btn.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
 /* ─── Tablet ≤1024px ─────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .main-layout { grid-template-columns: 180px 1fr; gap: 1.25rem; padding: 1rem; }
@@ -519,8 +544,18 @@ textarea { resize: vertical; min-height: 100px; }
   .note-card-content { font-size: .78rem; }
 
   /* Header simplification */
+  .top-header-tabs { display: none; }
   .top-header-logo span { display: none; }
   .top-header-actions .btn-outline span { display: none; }
   .user-chip-name { display: none; }
   .top-header-inner { padding: 0 .75rem; }
+
+  .sidebar-view-modes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-soft);
+  }
 }
