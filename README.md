@@ -1,5 +1,7 @@
 # 📒 NotesApp
 
+> 🌐 **Live Demo**: The application is deployed and ready for testing at **https://notes.agustindev.com.ar/**. You can use the [credentials listed below](#-test-credentials) or register a new user account.
+
 A modern, high-performance Full Stack Single Page Application (SPA) designed to create, manage, archive, and categorize personal notes in real-time. Built with a premium dark mode, responsive mobile-first design, installable PWA capabilities, and optimized Stale-While-Revalidate caching.
 
 ---
@@ -64,27 +66,4 @@ This script will:
   npm install
   npm run dev
   ```
-## 🌐 Production Deployment
-
-Este proyecto está alojado en el repositorio **[RamirezCura-80b1d7](https://github.com/hirelens-challenges/RamirezCura-80b1d7)**. Para desplegarlo:
-
-### Backend en Railway
-1. Haz fork del repositorio a tu cuenta (p. ej. `aguramirez/notes-app`).
-2. En Railway crea un nuevo proyecto → *Deploy from GitHub* y selecciona tu fork.
-3. Establece **Root Directory** a `/backend`.
-4. Configura variables de entorno:
-   - `SPRING_DATASOURCE_URL` – URL de la base de datos PostgreSQL que Railway creará.
-   - `SPRING_DATASOURCE_USERNAME` y `SPRING_DATASOURCE_PASSWORD` – credenciales de la base de datos.
-   - `JWT_SECRET` – cadena aleatoria segura (`openssl rand -hex 32`).
-   - `CORS_ALLOWED_ORIGINS` – URL de tu despliegue en Vercel (ej. `https://<tu-frontend>.vercel.app`).
-5. Railway detectará Maven y ejecutará `./mvnw clean package && java -jar target/*.jar`.
-
-### Frontend en Vercel
-1. En Vercel crea un nuevo proyecto → *Import Git Repository* e ingresa la URL de tu fork.
-2. Define **Root Directory** como `frontend`.
-3. Añade la variable de entorno:
-   - `VITE_API_BASE_URL` – `https://<tu-backend>.railway.app/api`.
-4. Vercel usará `frontend/vercel.json` para reenviar todas las rutas al `index.html`.
-
-Con estos pasos la aplicación quedará disponible en Vercel y Railway sin cambios adicionales.
 ```
