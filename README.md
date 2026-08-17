@@ -64,24 +64,27 @@ This script will:
   npm install
   npm run dev
   ```
-
----
-
 ## 🌐 Production Deployment
 
-This project is prepared with environment-variable overrides for quick, containerized production deployments.
+Este proyecto está alojado en el repositorio **[RamirezCura-80b1d7](https://github.com/hirelens-challenges/RamirezCura-80b1d7)**. Para desplegarlo:
 
-### 1. Backend (com.ensolvers.notes) on Railway
-1. Create a **New Project** on [Railway](https://railway.app) and link your GitHub repository.
-2. Set the service **Root Directory** to `/backend`.
-3. In the service **Variables** section, configure the following environment variables:
-   * `CORS_ALLOWED_ORIGINS`: Set this to your frontend's Vercel URL (e.g. `https://notes-app.vercel.app`).
-   * `JWT_SECRET`: A secure custom secret key.
-   * *(Optional)* If you connect a Railway PostgreSQL database service to the project, the schema will build automatically. If not, it will fall back to the default external Neon PostgreSQL.
+### Backend en Railway
+1. Haz fork del repositorio a tu cuenta (p. ej. `aguramirez/notes-app`).
+2. En Railway crea un nuevo proyecto → *Deploy from GitHub* y selecciona tu fork.
+3. Establece **Root Directory** a `/backend`.
+4. Configura variables de entorno:
+   - `SPRING_DATASOURCE_URL` – URL de la base de datos PostgreSQL que Railway creará.
+   - `SPRING_DATASOURCE_USERNAME` y `SPRING_DATASOURCE_PASSWORD` – credenciales de la base de datos.
+   - `JWT_SECRET` – cadena aleatoria segura (`openssl rand -hex 32`).
+   - `CORS_ALLOWED_ORIGINS` – URL de tu despliegue en Vercel (ej. `https://<tu-frontend>.vercel.app`).
+5. Railway detectará Maven y ejecutará `./mvnw clean package && java -jar target/*.jar`.
 
-### 2. Frontend (Vite Client) on Vercel
-1. Import your repository into [Vercel](https://vercel.com).
-2. Set the **Root Directory** to `frontend` (it will auto-detect Vite).
-3. In **Environment Variables**, add:
-   * `VITE_API_BASE_URL`: Set this to your Railway deployment API URL with the `/api` suffix (e.g. `https://notes-backend.up.railway.app/api`).
-4. Vercel will use the custom `vercel.json` rewrites to enable SPA client routing reloads.
+### Frontend en Vercel
+1. En Vercel crea un nuevo proyecto → *Import Git Repository* e ingresa la URL de tu fork.
+2. Define **Root Directory** como `frontend`.
+3. Añade la variable de entorno:
+   - `VITE_API_BASE_URL` – `https://<tu-backend>.railway.app/api`.
+4. Vercel usará `frontend/vercel.json` para reenviar todas las rutas al `index.html`.
+
+Con estos pasos la aplicación quedará disponible en Vercel y Railway sin cambios adicionales.
+```

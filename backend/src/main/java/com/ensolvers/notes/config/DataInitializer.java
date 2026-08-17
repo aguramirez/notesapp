@@ -43,11 +43,11 @@ public class DataInitializer implements ApplicationRunner {
         User agustin = new User("agustin", passwordEncoder.encode("ensolvers"));
         userRepository.save(agustin);
 
-        // Create categories (persist first so they have IDs)
-        Category work     = categoryRepository.save(new Category("Work"));
-        Category personal = categoryRepository.save(new Category("Personal"));
-        Category ideas    = categoryRepository.save(new Category("Ideas"));
-        Category learning = categoryRepository.save(new Category("Learning"));
+        // Create categories linked to the seeded user
+        Category work     = categoryRepository.save(new Category("Work", agustin));
+        Category personal = categoryRepository.save(new Category("Personal", agustin));
+        Category ideas    = categoryRepository.save(new Category("Ideas", agustin));
+        Category learning = categoryRepository.save(new Category("Learning", agustin));
 
         // Create 7 notes with categories
         createNote("Sprint Planning",
